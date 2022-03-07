@@ -1,0 +1,20 @@
+<!-- <p-dialog [(visible)]="showApiDialog" appendTo="body" [contentStyle]="{'overflow':'visible'}"> -->
+<div class="ui-g" style="height: 100%;">
+  <div class="ui-g-12" *ngIf="showApiDialog">
+    <app-callback-actionapi-dialog (actionApiSubmit)="handleActionApiAdded($event)" [callback]="callback"
+      [api]="currentActionApi" [args]="currentActionApiArgs" (showApi)="hideApi($event)">
+    </app-callback-actionapi-dialog>
+  </div>
+
+  <div class="ui-g-12" *ngIf="showConditionDialog">
+    <app-callback-action-condition-dialog (conditionAdded)="handleConditionAdded($event)" [args]="currentConditionArg"
+      (showCondition)="hideCondition($event)">
+    </app-callback-action-condition-dialog>
+  </div>
+
+  <div class="ui-g-12" style="height: 100%;    margin-right: -125px;">
+    <jsplumb-surface [surfaceId]="surfaceId" [toolkitId]="toolkitId" [view]="view" [renderParams]="renderParams"
+      [nodeResolver]="resolveNode"></jsplumb-surface>
+  </div>
+  <jsplumb-miniview [surfaceId]="surfaceId"></jsplumb-miniview>
+</div>

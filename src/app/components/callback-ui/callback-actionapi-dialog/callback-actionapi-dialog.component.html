@@ -1,0 +1,63 @@
+<p-fieldset [legend]="api.label" [toggleable]="true">
+  <form *ngIf="api && form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="ui-g ui-fluid">
+      <div class="fa fa-times" style="position: relative;top: -24px; cursor: pointer;" (click)="hideForm()"
+        title="close"></div>
+
+      <div class="ui-g-offset-1"></div>
+      <div *ngFor="let item of api.arguments" class="ui-g-3">
+
+        <span style="font-weight: 700;">{{item.label}}</span>
+        <p-dropdown
+          [options]="(api.category !== 'localVarApi' || item.name !== 'varName')?groupedVariableList:localVariableList"
+          [formControlName]="item.name" [placeholder]="'Select' + item.label" [group]="true" [showClear]="true"
+          editable="true" filter="true" *ngIf="api.id !== 'gotoState' && api.id !== 'setSessionState'"
+          (dragover)="allowDrop($event)" (drop)="drop($event, item.name)">
+          <ng-template let-group pTemplate="group">
+            <i [class]="group.value" style="width:20px;vertical-align:middle"></i>
+            <span style="margin-left:.25em">{{group.label}}</span>
+            <i *ngIf="group.label == 'Data points'" class="fa fa-plus" style="float: right" title="Extract Data"
+              (click)="openExtractDialog()"></i>
+            <i *ngIf="group.label == 'Local variables'" class="fa fa-plus" style="float: right"
+              title="Add Local Variable" (click)="showLocalVarDialog = true"></i>
+          </ng-template>
+        </p-dropdown>
+
+        <p-dropdown [options]="stateList" [formControlName]="'stateName'" [placeholder]="'Select State'"
+          *ngIf="api.id === 'gotoState'" (dragover)="allowDrop($event)" (drop)="drop($event, 'api')"></p-dropdown>
+        <p-dropdown [options]="sessionStateList" [formControlName]="'sessionState'" [placeholder]="'Select State'"
+          *ngIf="api.id ==='setSessionState'" (dragover)="allowDrop($event)" (drop)="drop($event, item.name)">
+        </p-dropdown>
+      </div>
+
+      <!--submit button-->
+      <div class="ui-g-1" style="text-align: center;padding-top: 25px;">
+        <button type="submit" pButton label="Add" [disabled]="!form.valid" [style]="{float: 'left'}"></button>
+      </div>
+
+    </div>
+
+  </form>
+</p-fieldset>
+
+<p-dialog [(visible)]="showLocalVarDialog" appendTo="body">
+  <p-header>Local Variable</p-header>
+  <div class="ui-g">
+    <div class="ui-g-6">
+      <label>Local Variable</label>
+    </div>
+    <div class="ui-g-5">
+      <input type="text" style="width: 75px" pInputText [(ngModel)]="localVar">
+    </div>
+    <div class="ui-g-1">
+      <i class="fa fa-plus" style="float: right ; padding: 9px 4px;" title="Add Local Variable"
+        (click)="addLocalVar()"></i>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [(visible)]="showExtractDialog" appendTo="body" [style]="{'min-width':'400px' , 'left':' 492px'}"
+  [contentStyle]="{'overflow':'visible'}">
+  <p-header>Extract Data</p-header>
+  <app-extractdata (extractedData)="ectractedDataPoint($event)"></app-extractdata>
+</p-dialog>

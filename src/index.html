@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>jsPlumbToolkit - Angular integration (Typescript and Angular CLI)</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+  <script type="jtk" class="dlg" id="dlgText" title="Enter Text">
+          <input type="text" size="50" jtk-focus jtk-att="text" value="${text}" jtk-commit="true"/>
+      </script>
+
+  <script type="=jtk" class="dlg" id="dlgRadio" title="Select Value">
+        YES<input type="radio" size="50" jtk-focus jtk-att="text" name="conect" value="yes" jtk-commit="true"/>
+        NO<input type="radio" size="50" jtk-focus jtk-att="text" name="conect" value="no" jtk-commit="true"/>
+      </script>
+
+  <script type="jtk" class="dlg" id="dlgConfirm" title="Please Confirm">
+            ${msg}?
+      </script>
+
+  <script type="jtk" class="dlg" id="dlgMessage" title="Message" cancel="false">
+          ${msg}
+      </script>
+
+  <div class="jtk-demo-main" id="jtk-demo-flowchart" style="margin-top: 0px;">
+
+    <jsplumb-demo toolkitId="flowchart">Loading Flowchart Builder...</jsplumb-demo>
+
+
+  </div>
+
+</body>
+
+</html>

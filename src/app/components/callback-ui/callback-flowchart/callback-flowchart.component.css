@@ -1,0 +1,16 @@
+/* :host>>>.controls{
+    margin: -50px 88px 52px -151px;
+    position: relative;
+} */
+
+:host>>>.flowchart-object svg:hover {
+  overflow: visible;
+}
+
+:host>>>.flowchart-object.jtk-surface-selected-element .node-action {
+  color: black;
+}
+
+:host>>>.flowchart-object text {
+  font-family: "Open Sans", "sans-serif", "FontAwesome";
+}

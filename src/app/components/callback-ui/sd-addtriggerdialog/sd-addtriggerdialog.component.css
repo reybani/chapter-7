@@ -1,0 +1,29 @@
+.invalid {
+  border: 1px solid red;
+}
+
+.forms {
+  display: block;
+  width: 100%;
+}
+
+.forms label {
+  width: 35%;
+  margin: 5px 0px;
+  float: left;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.forms .input-box {
+  width: 65%;
+  margin: 5px 0px;
+  float: left;
+  display: flex;
+  align-items: center;
+}
+
+:host>>>.my-select .ui-multiselect-label {
+  margin: 0px !important;
+}

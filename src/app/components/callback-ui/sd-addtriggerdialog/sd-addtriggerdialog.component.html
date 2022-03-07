@@ -1,0 +1,50 @@
+<!-- State Input-->
+<div class="forms">
+  <label>State</label>
+  <div class="input-box">
+    <input class="input-gui" type="text" style="width: 270px;" disabled="disabled" [(ngModel)]="stateName" />
+  </div>
+  <label>Trigger Name</label>
+  <div class="input-box">
+    <input class="input-gui" type="text" style="width: 270px;" disabled="disabled" [(ngModel)]="triggerName" />
+  </div>
+  <label>Trigger Type</label>
+  <div class="input-box">
+    <p-dropdown [options]="TriggerTypes" [(ngModel)]="triggerType" placeholder="Select Trigger" optionLabel="name"
+      [showClear]="true" class="my-select" [style]="{'width': '270px'}"></p-dropdown>
+  </div>
+</div>
+
+<div class="forms" *ngIf="triggerType && firstArgument[triggerType.code] == 'TimeOut'">
+  <label>Time Out</label>
+  <div class="input-box">
+    <div class="customSpiner">
+      <input type="number" placeholder="TimeOut (ms)" class="input-gui" style="width: 270px;" (input)="dirty = false"
+        [class.invalid]="dirty === true && !timeOut" [(ngModel)]="timeOut" required />
+    </div>
+  </div>
+</div>
+
+<div class="forms" *ngIf="triggerType && firstArgument[triggerType.code] == 'DOM_SELECTOR'">
+  <label>Dom Selector</label>
+  <div class="input-box">
+    <input class="input-gui" style="width: 270px;" (input)="dirty = false"
+      [class.invalid]="dirty === true && !domSelector" [(ngModel)]="domSelector" required />
+  </div>
+</div>
+
+
+
+<div class="forms" *ngIf="triggerType && firstArgument[triggerType.code] == 'URL_PATTERN'">
+  <label>URL Pattern</label>
+  <div class="input-box">
+    <input class="input-gui" style="width: 270px;" (input)="dirty = false"
+      [class.invalid]="dirty === true && !urlPattern" [(ngModel)]="urlPattern" required />
+  </div>
+</div>
+
+
+<label></label>
+<div class="input-box" style="text-align: center;">
+  <button type="button" (click)="submit()" class="button-all cav-mb-4">Add</button>
+</div>

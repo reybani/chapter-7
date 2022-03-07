@@ -1,0 +1,17 @@
+:host>>>.ui-fluid .ui-button {
+  width: auto;
+}
+
+:host>>>.ui-fieldset .ui-fieldset-legend a {
+  background-color: unset;
+  border: none;
+}
+
+:host>>>.ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend a:hover {
+  background-color: unset;
+  border: none;
+}
+
+:host>>>.ui-fluid .ui-dropdown {
+  width: 100% !important;
+}
